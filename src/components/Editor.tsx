@@ -1,5 +1,11 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef, useImperativeHandle, forwardRef } from 'react'
 import { handlePaste, PasteResult } from '@/lib/pasteHandler'
+
+export interface EditorRef {
+  insertAtCursor: (text: string, moveCursor?: boolean) => void
+  getSelection: () => { start: number; end: number }
+  focus: () => void
+}
 
 interface EditorProps {
   value: string
@@ -7,7 +13,38 @@ interface EditorProps {
   placeholder?: string
 }
 
-const Editor: React.FC<EditorProps> = ({ value, onChange, placeholder = '在这里输入 Markdown，或粘贴富文本...' }) => {
+const Editor = forwardRef<EditorRef, EditorProps>(({ value, onChange, placeholder = '在这里输入 Markdown，或粘贴富文本...' }, ref) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  // 暴露方法给父组件
+  useImperativeHandle(ref, () => ({
+    insertAtCursor: (text: string, moveCursor = true) => {
+      const textarea = textareaRef.current
+      if (!textarea) return
+
+      const start = textarea.selectionStart
+      const end = textarea.selectionEnd
+      const newValue = value.substring(0, start) + text + value.substring(end)
+      onChange(newValue)
+
+      if (moveCursor) {
+        setTimeout(() => {
+          const newCursorPos = start + text.length
+          textarea.setSelectionRange(newCursorPos, newCursorPos)
+          textarea.focus()
+        }, 0)
+      }
+    },
+    getSelection: () => {
+      const textarea = textareaRef.current
+      if (!textarea) return { start: 0, end: 0 }
+      return { start: textarea.selectionStart, end: textarea.selectionEnd }
+    },
+    focus: () => {
+      textareaRef.current?.focus()
+    }
+  }), [value, onChange])
+
   const handleTextareaChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange(e.target.value)
   }, [onChange])
@@ -65,6 +102,7 @@ const Editor: React.FC<EditorProps> = ({ value, onChange, placeholder = '在这�
         Markdown 编辑器
       </div>
       <textarea
+        ref={textareaRef}
         className="flex-1 w-full p-4 resize-none border-none outline-none font-mono text-sm leading-relaxed bg-white"
         value={value}
         onChange={handleTextareaChange}
@@ -74,6 +112,8 @@ const Editor: React.FC<EditorProps> = ({ value, onChange, placeholder = '在这�
       />
     </div>
   )
-}
+})
+
+Editor.displayName = 'Editor'
 
 export default Editor

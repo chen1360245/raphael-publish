@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef } from 'react'
-import Editor from './components/Editor'
+import Editor, { EditorRef } from './components/Editor'
 import Preview from './components/Preview'
 import Toolbar from './components/Toolbar'
 import ThemeSelector from './components/ThemeSelector'
@@ -56,6 +56,7 @@ const App: React.FC = () => {
   const [currentTheme, setCurrentTheme] = useState(themes[0])
   const [viewMode, setViewMode] = useState<ViewMode>('desktop')
   const previewRef = useRef<HTMLDivElement>(null)
+  const editorRef = useRef<EditorRef>(null)
 
   const handleContentChange = useCallback((newContent: string) => {
     setContent(newContent)
@@ -68,6 +69,29 @@ const App: React.FC = () => {
   const handleViewModeChange = useCallback((mode: ViewMode) => {
     setViewMode(mode)
   }, [])
+
+  // 在光标位置插入内容的辅助函数
+  const insertAtCursor = useCallback((text: string) => {
+    editorRef.current?.insertAtCursor(text)
+  }, [])
+
+  // 在光标位置插入内容（带换行）
+  const insertAtCursorWithNewline = useCallback((text: string) => {
+    const editor = editorRef.current
+    if (!editor) return
+
+    const selection = editor.getSelection()
+    const beforeContent = content.substring(0, selection.start)
+
+    // 如果光标不在行首，添加换行
+    const needsNewline = beforeContent.length > 0 && !beforeContent.endsWith('\n')
+    const prefix = needsNewline ? '\n' : ''
+
+    // 如果内容不以换行结尾，添加换行
+    const suffix = text.endsWith('\n') ? '' : '\n'
+
+    editor.insertAtCursor(prefix + text + suffix)
+  }, [content])
 
   return (
     <div className="h-screen flex flex-col bg-gray-100">
@@ -94,15 +118,16 @@ const App: React.FC = () => {
         {/* Left: Editor */}
         <div className="w-1/2 border-r border-gray-200 bg-white flex flex-col">
           <Toolbar
-            onBold={() => setContent(content + '**粗体**')}
-            onItalic={() => setContent(content + '*斜体*')}
-            onLink={() => setContent(content + '[链接文字](url)')}
-            onCode={() => setContent(content + '`代码`')}
-            onQuote={() => setContent(content + '\n> 引用\n')}
-            onImage={() => setContent(content + '![图片描述](url)')}
-            onHeading={(level) => setContent(content + '\n' + '#'.repeat(level) + ' 标题\n')}
+            onBold={() => insertAtCursor('**粗体**')}
+            onItalic={() => insertAtCursor('*斜体*')}
+            onLink={() => insertAtCursor('[链接文字](url)')}
+            onCode={() => insertAtCursor('`代码`')}
+            onQuote={() => insertAtCursorWithNewline('> 引用')}
+            onImage={() => insertAtCursor('![图片描述](url)')}
+            onHeading={(level) => insertAtCursorWithNewline('#'.repeat(level) + ' 标题')}
           />
           <Editor
+            ref={editorRef}
             value={content}
             onChange={handleContentChange}
           />

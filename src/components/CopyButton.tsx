@@ -1,45 +1,65 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
+import { copyHtmlToClipboard } from '@/lib/wechatCompat'
 
 interface CopyButtonProps {
   previewRef: React.RefObject<HTMLDivElement>
 }
 
-const CopyButton: React.FC<CopyButtonProps> = ({ previewRef }) => {
-  const [copied, setCopied] = useState(false)
+type CopyState = 'idle' | 'copying' | 'success' | 'error'
 
-  const copyToWeChat = async () => {
+const CopyButton: React.FC<CopyButtonProps> = ({ previewRef }) => {
+  const [copyState, setCopyState] = useState<CopyState>('idle')
+
+  const copyToWeChat = useCallback(async () => {
     const previewElement = previewRef.current?.querySelector('.markdown-body') as HTMLElement
     if (!previewElement) {
-      alert('预览区域未找到')
+      setCopyState('error')
+      setTimeout(() => setCopyState('idle'), 2000)
       return
     }
 
+    setCopyState('copying')
+
     try {
-      // 创建一个临时容器用于复制
-      const tempContainer = document.createElement('div')
-      tempContainer.innerHTML = previewElement.innerHTML
-      tempContainer.style.position = 'absolute'
-      tempContainer.style.left = '-9999px'
-      document.body.appendChild(tempContainer)
+      const success = await copyHtmlToClipboard(previewElement.innerHTML)
 
-      // 使用 Clipboard API 复制 HTML
-      const range = document.createRange()
-      range.selectNodeContents(tempContainer)
-      const selection = window.getSelection()
-      if (selection) {
-        selection.removeAllRanges()
-        selection.addRange(range)
-        document.execCommand('copy')
-        selection.removeAllRanges()
+      if (success) {
+        setCopyState('success')
+        setTimeout(() => setCopyState('idle'), 2000)
+      } else {
+        setCopyState('error')
+        setTimeout(() => setCopyState('idle'), 2000)
       }
-
-      document.body.removeChild(tempContainer)
-
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
     } catch (error) {
       console.error('Copy error:', error)
-      alert('复制失败，请手动选择复制')
+      setCopyState('error')
+      setTimeout(() => setCopyState('idle'), 2000)
+    }
+  }, [previewRef])
+
+  const getButtonStyle = () => {
+    switch (copyState) {
+      case 'copying':
+        return 'bg-blue-500 cursor-wait'
+      case 'success':
+        return 'bg-green-600'
+      case 'error':
+        return 'bg-red-500'
+      default:
+        return 'bg-green-600 hover:bg-green-700'
+    }
+  }
+
+  const getButtonText = () => {
+    switch (copyState) {
+      case 'copying':
+        return '处理中...'
+      case 'success':
+        return '已复制!'
+      case 'error':
+        return '复制失败'
+      default:
+        return '复制到公众号'
     }
   }
 
@@ -47,13 +67,10 @@ const CopyButton: React.FC<CopyButtonProps> = ({ previewRef }) => {
     <button
       type="button"
       onClick={copyToWeChat}
-      className={`px-4 py-2 text-sm font-medium text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors ${
-        copied
-          ? 'bg-green-600 hover:bg-green-700'
-          : 'bg-green-600 hover:bg-green-700'
-      }`}
+      disabled={copyState === 'copying'}
+      className={`px-4 py-2 text-sm font-medium text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors disabled:opacity-70 ${getButtonStyle()}`}
     >
-      {copied ? '已复制!' : '复制到公众号'}
+      {getButtonText()}
     </button>
   )
 }
