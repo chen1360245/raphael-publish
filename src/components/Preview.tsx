@@ -24,6 +24,26 @@ const Preview: React.FC<PreviewProps> = ({ content, theme, viewMode }) => {
     }
   }
 
+  // 构建 CSS 变量和主题样式
+  const themeStyles: React.CSSProperties = {
+    // 基础变量
+    '--color-bg': theme.colors.background,
+    '--color-text': theme.colors.text,
+    '--color-heading': theme.colors.heading,
+    '--color-link': theme.colors.link,
+    '--color-code': theme.colors.code,
+    '--color-code-bg': theme.colors.codeBackground,
+    '--color-blockquote': theme.colors.blockquote,
+    '--color-blockquote-border': theme.colors.blockquoteBorder,
+    '--font-body': theme.fonts.body,
+    '--font-heading': theme.fonts.heading,
+    '--font-code': theme.fonts.code,
+    // 直接应用基础样式
+    backgroundColor: theme.colors.background,
+    color: theme.colors.text,
+    fontFamily: theme.fonts.body,
+  } as React.CSSProperties
+
   return (
     <div className="h-full flex flex-col">
       <div className="px-4 py-2 border-b border-gray-200 bg-gray-50 text-sm text-gray-500 flex items-center justify-between">
@@ -38,11 +58,7 @@ const Preview: React.FC<PreviewProps> = ({ content, theme, viewMode }) => {
       >
         <div
           className={`markdown-body mx-auto ${getWidth()}`}
-          style={{
-            backgroundColor: theme.colors.background,
-            color: theme.colors.text,
-            fontFamily: theme.fonts.body,
-          }}
+          style={themeStyles}
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>

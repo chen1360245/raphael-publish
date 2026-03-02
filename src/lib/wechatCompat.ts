@@ -54,9 +54,20 @@ const INLINE_STYLE_MAP: Record<string, string> = {
 }
 
 /**
+ * 检查是否在浏览器环境
+ */
+function isBrowser(): boolean {
+  return typeof window !== 'undefined' && typeof document !== 'undefined'
+}
+
+/**
  * 将图片 URL 转换为 Base64
  */
 async function imageUrlToBase64(url: string): Promise<string> {
+  if (!isBrowser()) {
+    return url
+  }
+
   try {
     // 如果已经是 Base64 或 data URL，直接返回
     if (url.startsWith('data:')) {
@@ -179,6 +190,10 @@ async function processElement(
  * 从文档中提取所有 CSS 规则
  */
 function extractCssRules(): CSSStyleRule[] {
+  if (!isBrowser()) {
+    return []
+  }
+
   const rules: CSSStyleRule[] = []
 
   for (const stylesheet of document.styleSheets) {
@@ -203,6 +218,10 @@ function extractCssRules(): CSSStyleRule[] {
  * @returns 处理后的 HTML，图片已转 Base64，样式已内联化
  */
 export async function prepareForWeChat(html: string): Promise<string> {
+  if (!isBrowser()) {
+    return html
+  }
+
   // 创建临时容器
   const container = document.createElement('div')
   container.innerHTML = html
@@ -241,6 +260,11 @@ export async function prepareForWeChat(html: string): Promise<string> {
  * @param html HTML 内容
  */
 export async function copyHtmlToClipboard(html: string): Promise<boolean> {
+  if (!isBrowser()) {
+    console.warn('Clipboard operations are only available in browser environment')
+    return false
+  }
+
   try {
     // 准备微信兼容的 HTML
     const wechatHtml = await prepareForWeChat(html)
