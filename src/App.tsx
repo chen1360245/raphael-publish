@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react'
 import Editor, { EditorRef } from './components/Editor'
 import Preview from './components/Preview'
 import Toolbar from './components/Toolbar'
@@ -51,15 +51,38 @@ function hello() {
 
 type ViewMode = 'mobile' | 'tablet' | 'desktop'
 
+const DEBOUNCE_DELAY = 300 // 防抖延迟 300ms
+
 const App: React.FC = () => {
   const [content, setContent] = useState(defaultContent)
+  const [debouncedContent, setDebouncedContent] = useState(defaultContent)
   const [currentTheme, setCurrentTheme] = useState(themes[0])
   const [viewMode, setViewMode] = useState<ViewMode>('desktop')
   const previewRef = useRef<HTMLDivElement>(null)
   const editorRef = useRef<EditorRef>(null)
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const handleContentChange = useCallback((newContent: string) => {
     setContent(newContent)
+
+    // 清除之前的定时器
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current)
+    }
+
+    // 设置新的防抖定时器
+    debounceTimerRef.current = setTimeout(() => {
+      setDebouncedContent(newContent)
+    }, DEBOUNCE_DELAY)
+  }, [])
+
+  // 清理定时器
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current)
+      }
+    }
   }, [])
 
   const handleThemeChange = useCallback((theme: typeof themes[0]) => {
@@ -144,7 +167,7 @@ const App: React.FC = () => {
           </div>
           <div className="flex-1 overflow-auto p-6 flex justify-center" ref={previewRef}>
             <Preview
-              content={content}
+              content={debouncedContent}
               theme={currentTheme}
               viewMode={viewMode}
             />

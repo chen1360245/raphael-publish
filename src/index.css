@@ -141,7 +141,565 @@ body {
   margin: 24px 0;
 }
 
-/* 代码高亮主题 */
+/* 代码高亮主题 - 基础 */
 .hljs {
   background: transparent !important;
+  color: var(--color-text);
+}
+
+/* ===== Light 主题 (默认亮色) ===== */
+[data-code-theme="light"] .hljs-comment,
+[data-code-theme="light"] .hljs-quote {
+  color: #6a737d;
+  font-style: italic;
+}
+
+[data-code-theme="light"] .hljs-keyword,
+[data-code-theme="light"] .hljs-selector-tag,
+[data-code-theme="light"] .hljs-subst {
+  color: #d73a49;
+  font-weight: bold;
+}
+
+[data-code-theme="light"] .hljs-number,
+[data-code-theme="light"] .hljs-literal,
+[data-code-theme="light"] .hljs-variable,
+[data-code-theme="light"] .hljs-template-variable,
+[data-code-theme="light"] .hljs-tag .hljs-attr {
+  color: #005cc5;
+}
+
+[data-code-theme="light"] .hljs-string,
+[data-code-theme="light"] .hljs-doctag {
+  color: #032f62;
+}
+
+[data-code-theme="light"] .hljs-title,
+[data-code-theme="light"] .hljs-section,
+[data-code-theme="light"] .hljs-selector-id {
+  color: #6f42c1;
+  font-weight: bold;
+}
+
+[data-code-theme="light"] .hljs-subst {
+  font-weight: normal;
+}
+
+[data-code-theme="light"] .hljs-type,
+[data-code-theme="light"] .hljs-class .hljs-title {
+  color: #6f42c1;
+  font-weight: bold;
+}
+
+[data-code-theme="light"] .hljs-tag,
+[data-code-theme="light"] .hljs-name,
+[data-code-theme="light"] .hljs-attribute {
+  color: #22863a;
+  font-weight: normal;
+}
+
+[data-code-theme="light"] .hljs-regexp,
+[data-code-theme="light"] .hljs-link {
+  color: #032f62;
+}
+
+[data-code-theme="light"] .hljs-symbol,
+[data-code-theme="light"] .hljs-bullet {
+  color: #e36209;
+}
+
+[data-code-theme="light"] .hljs-built_in,
+[data-code-theme="light"] .hljs-builtin-name {
+  color: #005cc5;
+}
+
+[data-code-theme="light"] .hljs-meta {
+  color: #6a737d;
+  font-weight: bold;
+}
+
+[data-code-theme="light"] .hljs-deletion {
+  background: #ffeef0;
+  color: #b31d28;
+}
+
+[data-code-theme="light"] .hljs-addition {
+  background: #f0fff4;
+  color: #22863a;
+}
+
+/* ===== GitHub 主题 ===== */
+[data-code-theme="github"] .hljs-comment,
+[data-code-theme="github"] .hljs-quote {
+  color: #6e7781;
+}
+
+[data-code-theme="github"] .hljs-keyword,
+[data-code-theme="github"] .hljs-selector-tag,
+[data-code-theme="github"] .hljs-subst {
+  color: #cf222e;
+}
+
+[data-code-theme="github"] .hljs-number,
+[data-code-theme="github"] .hljs-literal,
+[data-code-theme="github"] .hljs-variable,
+[data-code-theme="github"] .hljs-template-variable,
+[data-code-theme="github"] .hljs-tag .hljs-attr {
+  color: #0550ae;
+}
+
+[data-code-theme="github"] .hljs-string,
+[data-code-theme="github"] .hljs-doctag {
+  color: #0a3069;
+}
+
+[data-code-theme="github"] .hljs-title,
+[data-code-theme="github"] .hljs-section,
+[data-code-theme="github"] .hljs-selector-id {
+  color: #8250df;
+}
+
+[data-code-theme="github"] .hljs-type,
+[data-code-theme="github"] .hljs-class .hljs-title {
+  color: #953800;
+}
+
+[data-code-theme="github"] .hljs-tag,
+[data-code-theme="github"] .hljs-name,
+[data-code-theme="github"] .hljs-attribute {
+  color: #116329;
+}
+
+[data-code-theme="github"] .hljs-regexp,
+[data-code-theme="github"] .hljs-link {
+  color: #0a3069;
+}
+
+[data-code-theme="github"] .hljs-symbol,
+[data-code-theme="github"] .hljs-bullet {
+  color: #953800;
+}
+
+[data-code-theme="github"] .hljs-built_in,
+[data-code-theme="github"] .hljs-builtin-name {
+  color: #8250df;
+}
+
+[data-code-theme="github"] .hljs-meta {
+  color: #6e7781;
+}
+
+/* ===== Dark 主题 (通用暗色) ===== */
+[data-code-theme="dark"] .hljs-comment,
+[data-code-theme="dark"] .hljs-quote {
+  color: #8b949e;
+  font-style: italic;
+}
+
+[data-code-theme="dark"] .hljs-keyword,
+[data-code-theme="dark"] .hljs-selector-tag,
+[data-code-theme="dark"] .hljs-subst {
+  color: #ff7b72;
+}
+
+[data-code-theme="dark"] .hljs-number,
+[data-code-theme="dark"] .hljs-literal,
+[data-code-theme="dark"] .hljs-variable,
+[data-code-theme="dark"] .hljs-template-variable,
+[data-code-theme="dark"] .hljs-tag .hljs-attr {
+  color: #79c0ff;
+}
+
+[data-code-theme="dark"] .hljs-string,
+[data-code-theme="dark"] .hljs-doctag {
+  color: #a5d6ff;
+}
+
+[data-code-theme="dark"] .hljs-title,
+[data-code-theme="dark"] .hljs-section,
+[data-code-theme="dark"] .hljs-selector-id {
+  color: #d2a8ff;
+}
+
+[data-code-theme="dark"] .hljs-type,
+[data-code-theme="dark"] .hljs-class .hljs-title {
+  color: #ffa657;
+}
+
+[data-code-theme="dark"] .hljs-tag,
+[data-code-theme="dark"] .hljs-name,
+[data-code-theme="dark"] .hljs-attribute {
+  color: #7ee787;
+}
+
+[data-code-theme="dark"] .hljs-regexp,
+[data-code-theme="dark"] .hljs-link {
+  color: #a5d6ff;
+}
+
+[data-code-theme="dark"] .hljs-symbol,
+[data-code-theme="dark"] .hljs-bullet {
+  color: #ffa657;
+}
+
+[data-code-theme="dark"] .hljs-built_in,
+[data-code-theme="dark"] .hljs-builtin-name {
+  color: #79c0ff;
+}
+
+[data-code-theme="dark"] .hljs-meta {
+  color: #8b949e;
+}
+
+/* ===== Monokai 主题 ===== */
+[data-code-theme="monokai"] .hljs-comment,
+[data-code-theme="monokai"] .hljs-quote {
+  color: #75715e;
+}
+
+[data-code-theme="monokai"] .hljs-keyword,
+[data-code-theme="monokai"] .hljs-selector-tag,
+[data-code-theme="monokai"] .hljs-literal,
+[data-code-theme="monokai"] .hljs-section,
+[data-code-theme="monokai"] .hljs-link {
+  color: #f92672;
+}
+
+[data-code-theme="monokai"] .hljs-string,
+[data-code-theme="monokai"] .hljs-title,
+[data-code-theme="monokai"] .hljs-name,
+[data-code-theme="monokai"] .hljs-type,
+[data-code-theme="monokai"] .hljs-attribute,
+[data-code-theme="monokai"] .hljs-symbol,
+[data-code-theme="monokai"] .hljs-bullet,
+[data-code-theme="monokai"] .hljs-addition,
+[data-code-theme="monokai"] .hljs-variable,
+[data-code-theme="monokai"] .hljs-template-tag,
+[data-code-theme="monokai"] .hljs-template-variable {
+  color: #a6e22e;
+}
+
+[data-code-theme="monokai"] .hljs-number,
+[data-code-theme="monokai"] .hljs-meta,
+[data-code-theme="monokai"] .hljs-built_in,
+[data-code-theme="monokai"] .hljs-builtin-name,
+[data-code-theme="monokai"] .hljs-literal,
+[data-code-theme="monokai"] .hljs-type,
+[data-code-theme="monokai"] .hljs-params {
+  color: #ae81ff;
+}
+
+[data-code-theme="monokai"] .hljs-regexp,
+[data-code-theme="monokai"] .hljs-link {
+  color: #fd971f;
+}
+
+[data-code-theme="monokai"] .hljs-tag {
+  color: #f92672;
+}
+
+[data-code-theme="monokai"] .hljs-subst {
+  color: #f8f8f2;
+}
+
+[data-code-theme="monokai"] .hljs-deletion {
+  color: #f92672;
+}
+
+/* ===== Dracula 主题 ===== */
+[data-code-theme="dracula"] .hljs-comment,
+[data-code-theme="dracula"] .hljs-quote {
+  color: #6272a4;
+}
+
+[data-code-theme="dracula"] .hljs-keyword,
+[data-code-theme="dracula"] .hljs-selector-tag,
+[data-code-theme="dracula"] .hljs-literal,
+[data-code-theme="dracula"] .hljs-section,
+[data-code-theme="dracula"] .hljs-link {
+  color: #ff79c6;
+}
+
+[data-code-theme="dracula"] .hljs-string,
+[data-code-theme="dracula"] .hljs-title,
+[data-code-theme="dracula"] .hljs-name,
+[data-code-theme="dracula"] .hljs-type,
+[data-code-theme="dracula"] .hljs-attribute,
+[data-code-theme="dracula"] .hljs-symbol,
+[data-code-theme="dracula"] .hljs-bullet,
+[data-code-theme="dracula"] .hljs-addition,
+[data-code-theme="dracula"] .hljs-variable,
+[data-code-theme="dracula"] .hljs-template-tag,
+[data-code-theme="dracula"] .hljs-template-variable {
+  color: #f8f8f2;
+}
+
+[data-code-theme="dracula"] .hljs-number,
+[data-code-theme="dracula"] .hljs-meta,
+[data-code-theme="dracula"] .hljs-built_in,
+[data-code-theme="dracula"] .hljs-builtin-name,
+[data-code-theme="dracula"] .hljs-literal,
+[data-code-theme="dracula"] .hljs-type,
+[data-code-theme="dracula"] .hljs-params {
+  color: #bd93f9;
+}
+
+[data-code-theme="dracula"] .hljs-regexp,
+[data-code-theme="dracula"] .hljs-link {
+  color: #f1fa8c;
+}
+
+[data-code-theme="dracula"] .hljs-tag {
+  color: #ff79c6;
+}
+
+[data-code-theme="dracula"] .hljs-subst {
+  color: #f8f8f2;
+}
+
+[data-code-theme="dracula"] .hljs-deletion {
+  color: #ff5555;
+}
+
+[data-code-theme="dracula"] .hljs-attr {
+  color: #50fa7b;
+}
+
+/* ===== Nord 主题 ===== */
+[data-code-theme="nord"] .hljs-comment,
+[data-code-theme="nord"] .hljs-quote {
+  color: #4c566a;
+}
+
+[data-code-theme="nord"] .hljs-keyword,
+[data-code-theme="nord"] .hljs-selector-tag,
+[data-code-theme="nord"] .hljs-literal,
+[data-code-theme="nord"] .hljs-section,
+[data-code-theme="nord"] .hljs-link {
+  color: #81a1c1;
+}
+
+[data-code-theme="nord"] .hljs-string,
+[data-code-theme="nord"] .hljs-title,
+[data-code-theme="nord"] .hljs-name,
+[data-code-theme="nord"] .hljs-type,
+[data-code-theme="nord"] .hljs-attribute,
+[data-code-theme="nord"] .hljs-symbol,
+[data-code-theme="nord"] .hljs-bullet,
+[data-code-theme="nord"] .hljs-addition,
+[data-code-theme="nord"] .hljs-variable,
+[data-code-theme="nord"] .hljs-template-tag,
+[data-code-theme="nord"] .hljs-template-variable {
+  color: #a3be8c;
+}
+
+[data-code-theme="nord"] .hljs-number,
+[data-code-theme="nord"] .hljs-meta,
+[data-code-theme="nord"] .hljs-built_in,
+[data-code-theme="nord"] .hljs-builtin-name,
+[data-code-theme="nord"] .hljs-literal,
+[data-code-theme="nord"] .hljs-type,
+[data-code-theme="nord"] .hljs-params {
+  color: #b48ead;
+}
+
+[data-code-theme="nord"] .hljs-regexp,
+[data-code-theme="nord"] .hljs-link {
+  color: #8fbcbb;
+}
+
+[data-code-theme="nord"] .hljs-tag {
+  color: #bf616a;
+}
+
+[data-code-theme="nord"] .hljs-subst {
+  color: #d8dee9;
+}
+
+[data-code-theme="nord"] .hljs-deletion {
+  color: #bf616a;
+}
+
+[data-code-theme="nord"] .hljs-attr {
+  color: #d8dee9;
+}
+
+/* ===== Solarized 主题 ===== */
+[data-code-theme="solarized"] .hljs-comment,
+[data-code-theme="solarized"] .hljs-quote {
+  color: #93a1a1;
+}
+
+[data-code-theme="solarized"] .hljs-keyword,
+[data-code-theme="solarized"] .hljs-selector-tag,
+[data-code-theme="solarized"] .hljs-literal,
+[data-code-theme="solarized"] .hljs-section,
+[data-code-theme="solarized"] .hljs-link {
+  color: #268bd2;
+}
+
+[data-code-theme="solarized"] .hljs-string,
+[data-code-theme="solarized"] .hljs-title,
+[data-code-theme="solarized"] .hljs-name,
+[data-code-theme="solarized"] .hljs-type,
+[data-code-theme="solarized"] .hljs-attribute,
+[data-code-theme="solarized"] .hljs-symbol,
+[data-code-theme="solarized"] .hljs-bullet,
+[data-code-theme="solarized"] .hljs-addition,
+[data-code-theme="solarized"] .hljs-variable,
+[data-code-theme="solarized"] .hljs-template-tag,
+[data-code-theme="solarized"] .hljs-template-variable {
+  color: #2aa198;
+}
+
+[data-code-theme="solarized"] .hljs-number,
+[data-code-theme="solarized"] .hljs-meta,
+[data-code-theme="solarized"] .hljs-built_in,
+[data-code-theme="solarized"] .hljs-builtin-name,
+[data-code-theme="solarized"] .hljs-literal,
+[data-code-theme="solarized"] .hljs-type,
+[data-code-theme="solarized"] .hljs-params {
+  color: #cb4b16;
+}
+
+[data-code-theme="solarized"] .hljs-regexp,
+[data-code-theme="solarized"] .hljs-link {
+  color: #dc322f;
+}
+
+[data-code-theme="solarized"] .hljs-tag {
+  color: #859900;
+}
+
+[data-code-theme="solarized"] .hljs-subst {
+  color: #586e75;
+}
+
+[data-code-theme="solarized"] .hljs-deletion {
+  color: #dc322f;
+}
+
+[data-code-theme="solarized"] .hljs-attr {
+  color: #b58900;
+}
+
+/* ===== Cyberpunk 主题 ===== */
+[data-code-theme="cyberpunk"] .hljs-comment,
+[data-code-theme="cyberpunk"] .hljs-quote {
+  color: #6272a4;
+  font-style: italic;
+}
+
+[data-code-theme="cyberpunk"] .hljs-keyword,
+[data-code-theme="cyberpunk"] .hljs-selector-tag,
+[data-code-theme="cyberpunk"] .hljs-literal,
+[data-code-theme="cyberpunk"] .hljs-section {
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff;
+}
+
+[data-code-theme="cyberpunk"] .hljs-string,
+[data-code-theme="cyberpunk"] .hljs-title,
+[data-code-theme="cyberpunk"] .hljs-name,
+[data-code-theme="cyberpunk"] .hljs-type,
+[data-code-theme="cyberpunk"] .hljs-attribute,
+[data-code-theme="cyberpunk"] .hljs-symbol,
+[data-code-theme="cyberpunk"] .hljs-bullet,
+[data-code-theme="cyberpunk"] .hljs-addition,
+[data-code-theme="cyberpunk"] .hljs-variable,
+[data-code-theme="cyberpunk"] .hljs-template-tag,
+[data-code-theme="cyberpunk"] .hljs-template-variable {
+  color: #00ffff;
+  text-shadow: 0 0 3px #00ffff;
+}
+
+[data-code-theme="cyberpunk"] .hljs-number,
+[data-code-theme="cyberpunk"] .hljs-meta,
+[data-code-theme="cyberpunk"] .hljs-built_in,
+[data-code-theme="cyberpunk"] .hljs-builtin-name,
+[data-code-theme="cyberpunk"] .hljs-literal,
+[data-code-theme="cyberpunk"] .hljs-params {
+  color: #ffff00;
+  text-shadow: 0 0 3px #ffff00;
+}
+
+[data-code-theme="cyberpunk"] .hljs-regexp,
+[data-code-theme="cyberpunk"] .hljs-link {
+  color: #ff00ff;
+}
+
+[data-code-theme="cyberpunk"] .hljs-tag {
+  color: #00ff00;
+}
+
+[data-code-theme="cyberpunk"] .hljs-subst {
+  color: #f0e6ff;
+}
+
+[data-code-theme="cyberpunk"] .hljs-deletion {
+  color: #ff0000;
+}
+
+[data-code-theme="cyberpunk"] .hljs-attr {
+  color: #9d4edd;
+}
+
+/* ===== High Contrast 主题 (高对比度) ===== */
+[data-code-theme="high-contrast"] .hljs-comment,
+[data-code-theme="high-contrast"] .hljs-quote {
+  color: #808080;
+}
+
+[data-code-theme="high-contrast"] .hljs-keyword,
+[data-code-theme="high-contrast"] .hljs-selector-tag,
+[data-code-theme="high-contrast"] .hljs-literal,
+[data-code-theme="high-contrast"] .hljs-section,
+[data-code-theme="high-contrast"] .hljs-link {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+[data-code-theme="high-contrast"] .hljs-string,
+[data-code-theme="high-contrast"] .hljs-title,
+[data-code-theme="high-contrast"] .hljs-name,
+[data-code-theme="high-contrast"] .hljs-type,
+[data-code-theme="high-contrast"] .hljs-attribute,
+[data-code-theme="high-contrast"] .hljs-symbol,
+[data-code-theme="high-contrast"] .hljs-bullet,
+[data-code-theme="high-contrast"] .hljs-addition,
+[data-code-theme="high-contrast"] .hljs-variable,
+[data-code-theme="high-contrast"] .hljs-template-tag,
+[data-code-theme="high-contrast"] .hljs-template-variable {
+  color: #ffff00;
+}
+
+[data-code-theme="high-contrast"] .hljs-number,
+[data-code-theme="high-contrast"] .hljs-meta,
+[data-code-theme="high-contrast"] .hljs-built_in,
+[data-code-theme="high-contrast"] .hljs-builtin-name,
+[data-code-theme="high-contrast"] .hljs-literal,
+[data-code-theme="high-contrast"] .hljs-params {
+  color: #00ff00;
+  font-weight: bold;
+}
+
+[data-code-theme="high-contrast"] .hljs-regexp,
+[data-code-theme="high-contrast"] .hljs-link {
+  color: #00ffff;
+}
+
+[data-code-theme="high-contrast"] .hljs-tag {
+  color: #00ff00;
+}
+
+[data-code-theme="high-contrast"] .hljs-subst {
+  color: #ffffff;
+}
+
+[data-code-theme="high-contrast"] .hljs-deletion {
+  color: #ff00ff;
+}
+
+[data-code-theme="high-contrast"] .hljs-attr {
+  color: #00ff00;
 }

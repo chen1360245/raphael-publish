@@ -1,3 +1,5 @@
+export type CodeHighlightTheme = 'light' | 'dark' | 'monokai' | 'github' | 'dracula' | 'nord' | 'solarized' | 'cyberpunk' | 'high-contrast'
+
 export interface ThemeColors {
   background: string
   text: string
@@ -21,6 +23,7 @@ export interface Theme {
   category: 'classic' | 'trendy' | 'more'
   colors: ThemeColors
   fonts: ThemeFonts
+  codeHighlightTheme: CodeHighlightTheme
 }
 
 // 30 套主题配置
@@ -30,6 +33,7 @@ export const themes: Theme[] = [
     id: 'mac-white',
     name: 'Mac 纯净白',
     category: 'classic',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#ffffff',
       text: '#333333',
@@ -50,6 +54,7 @@ export const themes: Theme[] = [
     id: 'claude-oat',
     name: 'Claude 燕麦色',
     category: 'classic',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#f5f3ef',
       text: '#4a4a4a',
@@ -70,6 +75,7 @@ export const themes: Theme[] = [
     id: 'wechat-native',
     name: '微信原生',
     category: 'classic',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#ffffff',
       text: '#3e3e3e',
@@ -90,6 +96,7 @@ export const themes: Theme[] = [
     id: 'nyt',
     name: 'NYT',
     category: 'classic',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#ffffff',
       text: '#333333',
@@ -110,6 +117,7 @@ export const themes: Theme[] = [
     id: 'medium',
     name: 'Medium',
     category: 'classic',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#ffffff',
       text: '#292929',
@@ -130,6 +138,7 @@ export const themes: Theme[] = [
     id: 'stripe',
     name: 'Stripe',
     category: 'classic',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#ffffff',
       text: '#32325d',
@@ -150,6 +159,7 @@ export const themes: Theme[] = [
     id: 'feishu-blue',
     name: '飞书蓝',
     category: 'classic',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#ffffff',
       text: '#1f2329',
@@ -170,6 +180,7 @@ export const themes: Theme[] = [
     id: 'linear-dark',
     name: 'Linear 暗夜',
     category: 'classic',
+    codeHighlightTheme: 'dark',
     colors: {
       background: '#0a0a0a',
       text: '#e2e8f0',
@@ -190,6 +201,7 @@ export const themes: Theme[] = [
     id: 'retro',
     name: 'Retro 复古',
     category: 'classic',
+    codeHighlightTheme: 'solarized',
     colors: {
       background: '#f5e6c8',
       text: '#4a3f35',
@@ -210,6 +222,7 @@ export const themes: Theme[] = [
     id: 'bloomberg',
     name: 'Bloomberg 终端',
     category: 'classic',
+    codeHighlightTheme: 'high-contrast',
     colors: {
       background: '#000000',
       text: '#00ff00',
@@ -232,6 +245,7 @@ export const themes: Theme[] = [
     id: 'notion',
     name: 'Notion',
     category: 'trendy',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#ffffff',
       text: '#37352f',
@@ -252,6 +266,7 @@ export const themes: Theme[] = [
     id: 'github',
     name: 'GitHub',
     category: 'trendy',
+    codeHighlightTheme: 'github',
     colors: {
       background: '#ffffff',
       text: '#24292f',
@@ -272,6 +287,7 @@ export const themes: Theme[] = [
     id: 'sspai',
     name: '少数派',
     category: 'trendy',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#ffffff',
       text: '#333333',
@@ -292,6 +308,7 @@ export const themes: Theme[] = [
     id: 'dracula',
     name: 'Dracula',
     category: 'trendy',
+    codeHighlightTheme: 'dracula',
     colors: {
       background: '#282a36',
       text: '#f8f8f2',
@@ -312,6 +329,7 @@ export const themes: Theme[] = [
     id: 'nord',
     name: 'Nord',
     category: 'trendy',
+    codeHighlightTheme: 'nord',
     colors: {
       background: '#2e3440',
       text: '#d8dee9',
@@ -332,6 +350,7 @@ export const themes: Theme[] = [
     id: 'sakura',
     name: '樱花',
     category: 'trendy',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#fef6f8',
       text: '#5c4d4d',
@@ -352,6 +371,7 @@ export const themes: Theme[] = [
     id: 'ocean',
     name: '深海',
     category: 'trendy',
+    codeHighlightTheme: 'dark',
     colors: {
       background: '#0f111a',
       text: '#c5c8e6',
@@ -372,6 +392,7 @@ export const themes: Theme[] = [
     id: 'mint',
     name: '薄荷',
     category: 'trendy',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#f0fff4',
       text: '#276749',
@@ -392,6 +413,7 @@ export const themes: Theme[] = [
     id: 'sunset',
     name: '日落',
     category: 'trendy',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#fff5eb',
       text: '#5a3e36',
@@ -412,6 +434,7 @@ export const themes: Theme[] = [
     id: 'monokai',
     name: 'Monokai',
     category: 'trendy',
+    codeHighlightTheme: 'monokai',
     colors: {
       background: '#272822',
       text: '#f8f8f2',
@@ -434,6 +457,7 @@ export const themes: Theme[] = [
     id: 'solarized-light',
     name: 'Solarized Light',
     category: 'more',
+    codeHighlightTheme: 'solarized',
     colors: {
       background: '#fdf6e3',
       text: '#657b83',
@@ -454,6 +478,7 @@ export const themes: Theme[] = [
     id: 'cyberpunk',
     name: 'Cyberpunk',
     category: 'more',
+    codeHighlightTheme: 'cyberpunk',
     colors: {
       background: '#0d0d0d',
       text: '#f0e6ff',
@@ -474,6 +499,7 @@ export const themes: Theme[] = [
     id: 'ink-wash',
     name: '水墨',
     category: 'more',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#faf9f7',
       text: '#333333',
@@ -494,6 +520,7 @@ export const themes: Theme[] = [
     id: 'lavender',
     name: '薰衣草',
     category: 'more',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#f8f6fc',
       text: '#4a4458',
@@ -514,6 +541,7 @@ export const themes: Theme[] = [
     id: 'forest',
     name: '密林',
     category: 'more',
+    codeHighlightTheme: 'dark',
     colors: {
       background: '#1a1f16',
       text: '#c8d5bb',
@@ -534,6 +562,7 @@ export const themes: Theme[] = [
     id: 'glacier',
     name: '冰川',
     category: 'more',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#f0f8ff',
       text: '#2c4a6e',
@@ -554,6 +583,7 @@ export const themes: Theme[] = [
     id: 'coffee',
     name: '咖啡',
     category: 'more',
+    codeHighlightTheme: 'solarized',
     colors: {
       background: '#f5f0e8',
       text: '#4a3c2e',
@@ -574,6 +604,7 @@ export const themes: Theme[] = [
     id: 'bauhaus',
     name: 'Bauhaus',
     category: 'more',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#ffffff',
       text: '#000000',
@@ -594,6 +625,7 @@ export const themes: Theme[] = [
     id: 'copper',
     name: '赤铜',
     category: 'more',
+    codeHighlightTheme: 'dark',
     colors: {
       background: '#1c1410',
       text: '#d4a574',
@@ -614,6 +646,7 @@ export const themes: Theme[] = [
     id: 'rainbow',
     name: '彩虹糖',
     category: 'more',
+    codeHighlightTheme: 'light',
     colors: {
       background: '#fefce8',
       text: '#1f2937',
@@ -656,4 +689,7 @@ export function applyTheme(theme: Theme): void {
   root.style.setProperty('--font-body', theme.fonts.body)
   root.style.setProperty('--font-heading', theme.fonts.heading)
   root.style.setProperty('--font-code', theme.fonts.code)
+
+  // 应用代码高亮主题
+  root.setAttribute('data-code-theme', theme.codeHighlightTheme)
 }
